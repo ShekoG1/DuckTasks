@@ -1,0 +1,13 @@
+{
+    "name": "duck-tasks",
+    "version": "1.0.0",
+    "scripts": {
+        "client": "cd client && npm install",
+        "server": "cd server && npm install",
+        "install": "npm install && npm run client && npm run server",
+        "dev": "concurrently \"npm run client\" \"npm run server\""
+    },
+    "dependencies": {
+        "concurrently": "^7.6.0"
+    }
+}
