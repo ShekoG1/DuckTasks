@@ -82,10 +82,7 @@ export default class Auth{
 
         const { data, error } = await this.supabase.auth.resend({
             type: 'signup',
-            email: email,
-            /*options: {
-                emailRedirectTo: 'https://example.com/welcome'
-            }*/
+            email: email
         });
 
         if(error){
@@ -125,12 +122,10 @@ export default class Auth{
 
         if(error) return {status:400,message:"failed",error:error};
 
-        // Delete all member data and comments
-        // Note: memebrs table links to comments and cascades when a member is deleted. This means that when a member is deleted, the members comments/likes are also deleted.
-        const { customerError } = await this.supabase
-        .from('customers')
-        .delete()
-        .eq('customer_id', customer_id)
+        // const { customerError } = await this.supabase
+        // .from('customers')
+        // .delete()
+        // .eq('customer_id', customer_id)
         
         if(customerError) return {status:400,message:"failed",error:customerError};
 
