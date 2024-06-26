@@ -1,0 +1,76 @@
+#upsert_task{
+    padding: 50px 200px 50px 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#tools{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#tools div{
+    font-weight: bold;
+}
+#tools div:nth-child(1){
+    font-size: 30px;
+    cursor: pointer;
+    width: 100%;
+}
+#tools div:nth-child(2){
+    position: relative;
+    font-size: 35px;
+    margin: 0 auto;
+}
+#form{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding: 30px;
+}
+.form_left,.form_right{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+    gap: 10px;
+}
+.forminput{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.forminput label{
+    font-size: 20px;
+    padding-left: 10px;
+}
+.forminput input, .forminput select, .forminput textarea{
+    width: 100%;
+    max-width: 515px;
+    height: 62px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 1px solid black;
+    font-size: 22px;
+}
+.forminput textarea{
+    border-bottom-right-radius: 0;
+    resize: vertical;
+    min-height: 62px;
+    height: 245px;
+    padding: 10px;
+}
+#buttons{
+    display: flex;
+    gap: 20px;
+}
+#buttons button{
+    width: 133px;
+    height: 62px;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 1px solid black;
+}

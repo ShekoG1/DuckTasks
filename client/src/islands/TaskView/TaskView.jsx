@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './TaskView.css'
 import Task from '../../components/Task/Task';
 
 function TaskView(props) {
@@ -73,7 +74,7 @@ function TaskView(props) {
 
     return (
         <div id="taskview">
-            <button onClick={props.handleCreateTaskClick} data-type="create">Create Task</button>
+            <button id='taskview_create--btn' onClick={props.handleCreateTaskClick} data-type="create">Create Task</button>
             <div id="task_list">
                 {tasks.map((task) => (
                     <Task

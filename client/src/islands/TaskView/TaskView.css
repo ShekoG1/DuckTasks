@@ -1,0 +1,21 @@
+#taskview{
+    padding: 200px;
+    display: flex;
+    flex-direction: column;
+}
+#task_list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 50px;
+}
+
+#taskview_create--btn{
+    width: 218px;
+    height: 62px;
+    border-radius: 20px;
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}

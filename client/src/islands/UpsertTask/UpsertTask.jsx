@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './UpsertTask.css';
 
 function UpsertTask(props) {
     if(props.handleGoBackClick === undefined) throw new Error("UpsertTask is missing a required prop: handleGoBackClick");
@@ -107,20 +108,23 @@ function UpsertTask(props) {
     return (
         <div id="upsert_task">
             <div id="tools">
-                <div onClick={props.handleGoBackClick}>Back</div>
+                <div onClick={props.handleGoBackClick}>{"<- "}Back</div>
                 <div>{props.isUpdate ? "Update ": "Create a"} Task</div>
             </div>
             <div id="form">
                 <div className="form_left">
                     <div className="forminput">
+                        <label>Title</label>
                         <input className='textfield' type="text" onChange={(event)=>setTaskName(event.target.value)} />
                     </div>
                     <div className="forminput">
+                        <label>Description</label>
                         <textarea className='textarea' onChange={(event)=>setTaskDescription(event.target.value)}></textarea>
                     </div>
                 </div>
                 <div className="form_right">
                     <div className="forminput">
+                        <label>Category</label>
                         <select className='category--select' onChange={(event)=>setTaskCategory(event.target.value)}>
                             {
                                 // If categoies is empty then, show "loading" text, else show the categories
@@ -136,6 +140,7 @@ function UpsertTask(props) {
                         </select>
                     </div>
                     <div className="forminput">
+                        <label>Priority</label>
                         <select className='priotity--select' onChange={(event)=>setTaskPriority(event.target.value)}>
                             <option value="high">High</option>
                             <option value="medium">Medium</option>
@@ -146,7 +151,7 @@ function UpsertTask(props) {
             </div>
             <div id="buttons">
                 <button id={"buttons--save"} onClick={handleSaveBtnClick}>Save</button>
-                <button id={"buttons--reset"}>Reset</button>
+                {/* <button id={"buttons--reset"}>Reset</button> */}
             </div>
         </div>
     );
