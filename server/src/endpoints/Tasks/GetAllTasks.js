@@ -10,7 +10,7 @@ export default async function GetAllTasks(req, res) {
     
     console.log(req.body)
 
-    // Perform signin through Supabase
+    // Perform GET through Supabase
     const result = await task.GetAllTasks(uid);
 
     // Return result to client for further processing

@@ -15,7 +15,7 @@ export default async function CreateTask(req, res) {
     const description = util.sanitizeInput(task_description);
     const priority = util.sanitizeInput(task_priority);
 
-    // Perform signin through Supabase
+    // Perform create through Supabase
     const result = await task.CreateTask(uid,task_title,task_description,task_due_date,task_priority,task_category,task_tags);
 
     // Return result to client for further processing

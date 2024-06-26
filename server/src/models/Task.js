@@ -79,9 +79,9 @@ export default class Task{
         }
     }
 
-    async UpdateTask(uid, title, description, due_date, priority, category, tags, taskId) {
+    async UpdateTask(title, description, status, due_date, priority, category, tags, taskId) {
         // At least one value must be updated
-        if (uid === null && title === null && description === null && due_date === null && priority === null && category === null && tags === null) {
+        if (title === null && description === null && status === null && due_date === null && priority === null && category === null && tags === null) {
             console.log("error", "UpdateTask: Fields cannot be null");
             return { status: 400, message: "failed", error: "Fields cannot be null" };
         }
@@ -101,6 +101,7 @@ export default class Task{
         const updates = {};
         if (title !== null) updates.title = title;
         if (description !== null) updates.description = description;
+        if (status !== null) updates.status = status;
         if (due_date !== null) updates.due_date = due_date;
         if (priority !== null) updates.priority = priority;
         if (category !== null) updates.category = category;
