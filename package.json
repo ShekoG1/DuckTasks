@@ -2,10 +2,12 @@
     "name": "duck-tasks",
     "version": "1.0.0",
     "scripts": {
-        "client": "cd client && npm install",
-        "server": "cd server && npm install",
-        "install": "npm install && npm run client && npm run server",
-        "dev": "concurrently \"npm run client\" \"npm run server\""
+        "client": "cd client && npm start",
+        "server": "cd server && npm start",
+        "install_client": "cd client && npm install",
+        "install_server":"cd server && npm install",
+        "start": "concurrently \"npm run client\" \"npm run server\"",
+        "install": "cd client && npm install && cd ../server && npm install"
     },
     "dependencies": {
         "concurrently": "^7.6.0"
