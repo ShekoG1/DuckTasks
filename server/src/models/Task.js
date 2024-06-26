@@ -25,7 +25,8 @@ export default class Task{
                 id,category_title
             )
         `)
-        .eq('uid',uid);
+        .eq('uid',uid)
+        .order('id', { ascending: false });
 
         // Return task
         if(error){
@@ -88,7 +89,7 @@ export default class Task{
 
         // Validate necessary inputs
         if (tags != null && tags.tags == undefined) {
-            return { status: 400, message: "failed", error: "Tags is not in JSON format" };
+            return { status: 400, message: "failed", error: "Tags is not in JSON format" , tags: tags };
         }
         if (category != null && typeof category != 'number') {
             return { status: 400, message: "failed", error: "Category is not a number" };

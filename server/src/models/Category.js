@@ -12,7 +12,7 @@ export default class Category{
 
     async GetAllCategories(){
         let { data: tasks, error } = await this.supabase
-        .from('tasks')
+        .from('categories')
         .select(`* `)
 
         // Return Categories
