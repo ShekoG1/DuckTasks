@@ -6,7 +6,7 @@ export default async function UpdateTask(req, res) {
     const util = new Util();
 
     // Grab inputs
-    const {taskId,task_title,task_description,task_status,task_due_date,task_priority,task_category,task_tags} = req.body;
+    const {taskId,task_title,task_description,task_status,task_priority,task_category} = req.body;
 
     console.log(req.body)
 
@@ -20,10 +20,8 @@ export default async function UpdateTask(req, res) {
     const description = task_description ? util.sanitizeInput(task_description) : task_description;
     const priority = task_priority ? util.sanitizeInput(task_priority) : task_priority;
 
-    console.log(task_tags)
-
     // Perform update through Supabase
-    const result = await task.UpdateTask(title,description,task_status,task_due_date,priority,task_category,task_tags,taskId);
+    const result = await task.UpdateTask(title,description,task_status,priority,task_category,taskId);
 
     // Return result to client for further processing
     res.send(result);

@@ -52,10 +52,8 @@ function UpsertTask(props) {
           "uid": "7c7259a9-2266-4394-86e4-704583418da9",
           "task_title": taskName,
           "task_description": taskDescription,
-          "task_due_date": null,
           "task_priority": taskPriority,
-          "task_category": Number(taskCategory),
-          "task_tags": null
+          "task_category": Number(taskCategory)
         });
         
         const requestOptions = {

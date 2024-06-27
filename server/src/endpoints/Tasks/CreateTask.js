@@ -6,7 +6,7 @@ export default async function CreateTask(req, res) {
     const util = new Util();
 
     // Grab inputs
-    const {uid,task_title,task_description,task_due_date,task_priority,task_category,task_tags} = req.body;
+    const {uid,task_title,task_description,task_priority,task_category} = req.body;
 
     console.log(req.body)
 
@@ -16,7 +16,7 @@ export default async function CreateTask(req, res) {
     const priority = util.sanitizeInput(task_priority);
 
     // Perform create through Supabase
-    const result = await task.CreateTask(uid,task_title,task_description,task_due_date,task_priority,task_category,task_tags);
+    const result = await task.CreateTask(uid,title,description,priority,task_category);
 
     // Return result to client for further processing
     res.send(result);

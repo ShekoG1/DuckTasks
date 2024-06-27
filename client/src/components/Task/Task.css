@@ -3,8 +3,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid black;
+    padding: 10px 30px 10px 30px;
+    box-sizing: border-box;
 }
 .task .task_complete input{
     cursor: pointer;
     scale: 2;
+}
+.task_details{
+    width: 80%;
+}
+.task_details--badges{
+    display: flex;
+    gap: 20px;
+}
+
+.task_details--badges span{
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 10px 5px 10px;
+    background-color: #FFD257;
+    color: black;
+    border-radius: 20px;
+    text-transform: capitalize;
+}
+
+.task_delete{
+    cursor: pointer;
 }

@@ -35,17 +35,14 @@ export default class Task{
         return {status:200,message:"success",data:tasks};
     }
 
-    async CreateTask(uid,title,description,due_date,priority,category,tags){
+    async CreateTask(uid,title,description,priority,category){
 
-        if(uid === null && title === null && status === null && priority === null && category === null){
+        if(uid === null && title === null && priority === null && category === null){
             console.log("error","CreateTask: Fields cannot be null");
             return {status:400,message:"failed",error:"Fields cannot be null"};
         }
 
         // Validate necessary inputs
-        if(tags != null && tags.tags == undefined){
-            return {status:400,message:"failed",error:"Tags is not in JSON format"};
-        }
         if (typeof category != 'number'){
             return {status:400,message:"failed",error:"Category is not a number"};
         }
@@ -61,10 +58,8 @@ export default class Task{
             title: title,
             description: description,
             status: 0,
-            due_date: due_date,
             priority: priority,
-            category: category,
-            tags: tags
+            category: category
           },
         ])
         .select()
@@ -80,17 +75,14 @@ export default class Task{
         }
     }
 
-    async UpdateTask(title, description, status, due_date, priority, category, tags, taskId) {
+    async UpdateTask(title, description, status, priority, category, taskId) {
         // At least one value must be updated
-        if (title === null && description === null && status === null && due_date === null && priority === null && category === null && tags === null) {
+        if (title === null && description === null && status === null && priority === null && category === null ) {
             console.log("error", "UpdateTask: Fields cannot be null");
             return { status: 400, message: "failed", error: "Fields cannot be null" };
         }
 
         // Validate necessary inputs
-        if (tags != null && tags.tags == undefined) {
-            return { status: 400, message: "failed", error: "Tags is not in JSON format" , tags: tags };
-        }
         if (category != null && typeof category != 'number') {
             return { status: 400, message: "failed", error: "Category is not a number" };
         }
@@ -103,10 +95,8 @@ export default class Task{
         if (title !== null) updates.title = title;
         if (description !== null) updates.description = description;
         if (status !== null) updates.status = status;
-        if (due_date !== null) updates.due_date = due_date;
         if (priority !== null) updates.priority = priority;
         if (category !== null) updates.category = category;
-        if (tags !== null) updates.tags = tags;
 
         // Run update
         const { data, error } = await this.supabase

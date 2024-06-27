@@ -71,10 +71,41 @@ function TaskView(props) {
           })
           .catch((error) => console.error(error));
     }
+    const handleDeleteTaskClick = (taskId)=>{
+        console.log("Deleted "+taskId)
+
+        // Ensure the user did not click delete by accident
+        const confirmed = window.confirm("Are you sure you want to proceed? Once you delete this task, you will not be able to recover it.");
+
+        if(confirmed){
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            
+            const raw = JSON.stringify({
+            "taskId": Number(taskId)
+            });
+            
+            const requestOptions = {
+                method: "DELETE",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+            
+            fetch(process.env.REACT_APP_API_URL+"/tasks", requestOptions)
+            .then((response) => response.text())
+            .then((result) => {
+                console.log('DELETED',result)
+                setRebuildTasks(true);
+            })
+            .catch((error) => console.error(error));
+        }
+    }
 
     return (
         <div id="taskview">
             <button id='taskview_create--btn' onClick={props.handleCreateTaskClick} data-type="create">Create Task</button>
+            <p>Click on the checkbox to mark a task as complete.</p>
             <div id="task_list">
                 {tasks.map((task) => (
                     <Task
@@ -82,8 +113,11 @@ function TaskView(props) {
                         title={task.title}
                         description={task.description}
                         complete={task.status}
+                        priority={task.priority}
+                        category={task.categories.category_title}
                         id={task.id}
                         onChange={(event)=>handleTaskStatusChange(event.target.checked,task.id)}
+                        deleteTask={(event)=>handleDeleteTaskClick(task.id)}
                     />
                 ))}
             </div>

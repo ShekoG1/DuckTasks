@@ -3,7 +3,6 @@
 
 All your tasks, in one space - no more duck-ups!
 
-
 ## The Question
 To build a task manager - specifics below.
 
@@ -108,10 +107,8 @@ Note: This request is a post request so that we do not display the `uid` in the 
 | `uid`      | `string` | **Required**. Id of signed in user |
 | `task_title`      | `string` | **Required**. Title of the task |
 | `task_description`      | `string` | **Required**. Description of the task |
-| `task_due_date`      | `string` | **NOT Required**. Set this to null |
 | `task_priority`      | `string` | **Required**. Choice of priority - high,medium,low |
 | `task_category`      | `string` | **Required**. FK based on the ID of the category table |
-| `task_tags`      | `string` | **NOT Required**. Set this to null |
 
 #### Update a Task
 
