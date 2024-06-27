@@ -6,6 +6,11 @@ const Home = () => {
   const [createTask, setCreateTask] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
 
+  //Ensure that the user is logged in before accessing other features
+  if(localStorage.getItem("token") === null){
+    window.location.href = "/Login";
+  }
+
   // Handlers
   const handleCreateTaskClick = (event) => {
     let eventType = event.target.dataset.type;

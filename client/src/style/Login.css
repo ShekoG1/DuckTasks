@@ -1,0 +1,44 @@
+@import url('./../index.css');
+
+#login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(50%);
+}
+
+#login_model{
+    width: 500px;
+    box-shadow: 0 0 20px 2px;
+    padding: 30px;
+}
+
+#login_model h2{
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0;
+}
+#login_model p{
+    font-size: 30px;
+    margin: 0 0 30px 0;
+}
+
+#login_buttons{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#login_buttons button{
+    width: 133px;
+    height: 62px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+    border:  1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+}
+    
