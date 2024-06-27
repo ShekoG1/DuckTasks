@@ -1,37 +1,222 @@
-# DuckTasks
+
+# Duck Tasks [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
 All your tasks, in one space - no more duck-ups!
 
-## About the Task
 
-This project involves developing a full-stack web application for task management. The application will consist of a frontend for user interaction, a backend to handle data processing and storage, and a database to persist task information. Below are the detailed requirements for each component:
+## The Question
+To build a task manager - specifics below.
 
-### Frontend (Web) Requirements
-- **Create a Web Page with a Form to Add New Tasks:** Users should be able to input task descriptions via a form.
-- **Display a List of Tasks:** Initially, the task list will be empty, but it will update dynamically as tasks are added.
-- **Task Completion Checkbox:** Each task in the list should have a checkbox allowing users to mark it as completed.
-- **Frontend Framework:** You may use any frontend framework such as React, Angular, or Vue.js to build the web page.
+https://github.com/ShekoG1/DuckTasks/blob/main/Task.md
 
-### Backend (Server) Requirements
-- **Backend Server Setup:** Implement the backend server using any technology like Node.js, Python, or Java.
-- **RESTful APIs:**
-  - **Add a New Task (POST request):** An endpoint to add new tasks.
-  - **Get All Tasks (GET request):** An endpoint to retrieve all tasks.
-  - **Mark a Task as Completed (PUT request):** An endpoint to update the completion status of a task.
-  - **Delete a Task (DELETE request):** An endpoint to remove a task from the list.
 
-### Database Requirements
-- **Database Choice:** Select a database such as MySQL, PostgreSQL, or MongoDB.
-- **Task Storage:** Create a table or collection to store tasks, with fields for ID, description, and completion status.
+## The Solution
+A simplistic, interactive experience - allowing the user to create and tick-off tasks as they go. Featuring a login system, to ensure that only you can see your own tasks!
 
-### Git Workflow
-- **Git Repository:** Initialize a Git repository for the project.
-- **Regular Commits:** Commit and push code changes regularly as features are developed.
-- **Meaningful Commit Messages:** Write descriptive commit messages like “Added task creation API” or “Implemented task listing”.
+The state-of-the-art frontend run on ReactJS, supported by a strong NodeJS backend, all tied together by Supabase - a brilliant Firebase alternative with its own simplistic API reference.
 
-### Comments and Documentation
-- **Code Comments:** Thoroughly comment your code to explain the purpose of each function or block and describe any complex logic or algorithms.
-- **README File:** Provide a README file with setup instructions for other developers.
+Now, let's break it down.
+## Table of Contents
 
-### Bonus (Optional)
-- **User Authentication:** Implement signup/login functionality.
-- **Deployment:** Deploy the application to a cloud platform such as Heroku, Netlify, or AWS.
+1. [Installation](##Installation)
+2. [API Reference](#API)
+    - SignIn
+    - Get All Tasks
+    - Create a Task
+    - Update a Task
+    - Delete a Task
+    - Bonus: SignUp
+3. [Database](##Database)
+    - Tasks Table
+    - Categories Table
+4. [Authors](##Authors)
+5. [FAQ](##FAQ)
+
+## Installation
+
+Install my-project with npm
+
+1. **Clone the repository:**
+   Open your terminal and run:
+   ```sh
+   git clone https://github.com/ShekoG1/DuckTasks.git
+   ```
+
+2. **Navigate into the cloned directory:**
+   ```sh
+   cd DuckTasks
+   ```
+
+3. **Install dependencies:**
+   You can install the dependencies for both the client and server with a single command:
+   ```sh
+   npm run install
+   ```
+
+   Alternatively, you can install them separately:
+   ```sh
+   npm run install_client
+   npm run install_server
+   ```
+
+4. **Start the application:**
+   To start both the client and server simultaneously, run:
+   ```sh
+   npm run start
+   ```
+
+   If you want to start them individually, you can run:
+   ```sh
+   npm run client
+   npm run server
+   ```
+
+By following these steps, you should be able to clone, set up, and run the DuckTasks application.
+## API Reference
+You can find the Postman reference in the `Server` folder.
+#### Sign In
+
+```http
+  POST /auth/signin
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `user_email` | `string` | **Required**. User Email Address |
+| `user_password` | `string` | **Required**. Users password |
+
+#### Get All Tasks
+
+Note: This request is a post request so that we do not display the `uid` in the GET URL
+
+```http
+  POST /tasks
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `uid`      | `string` | **Required**. Id of signed in user |
+
+#### Create a Task
+
+```http
+  POST /tasks/create
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `uid`      | `string` | **Required**. Id of signed in user |
+| `task_title`      | `string` | **Required**. Title of the task |
+| `task_description`      | `string` | **Required**. Description of the task |
+| `task_due_date`      | `string` | **NOT Required**. Set this to null |
+| `task_priority`      | `string` | **Required**. Choice of priority - high,medium,low |
+| `task_category`      | `string` | **Required**. FK based on the ID of the category table |
+| `task_tags`      | `string` | **NOT Required**. Set this to null |
+
+#### Update a Task
+
+Note: The primary goal of this endpoint is to update the status, but for future proofing, the ability to edit certain columns were added.
+
+```http
+  PUT /tasks
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of the task |
+| `task_status`      | `bool` | **Optional**. Determines if the task is complete |
+| `task_title`      | `string` | **Optional**. Title of the task |
+| `task_description`      | `string` | **Optional**. Description of the task |
+| `task_priority`      | `string` | **Optional**. Choice of priority - high,medium,low |
+| `task_category`      | `string` | **Optional**. FK based on the ID of the category table |
+
+#### Delete a Task
+
+```http
+  DELETE /tasks
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of the task |
+
+----------------------
+#### Bonus: SignUp
+
+```http
+  POST /auth/signup
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `user_name`      | `string` | **Required**. The users name |
+| `user_surname`      | `string` | **Required**. The users surname |
+| `user_email`      | `string` | **Required**. Preferred email address |
+| `user_password`      | `string` | **Required**. The users password |
+
+
+## Database
+
+This project was built on a Supabase DB for a quick and easy storage solution, with built in authentication. The table definitions are below:
+
+### Tasks Table
+```
+create table
+  public.tasks (
+    id bigint generated by default as identity,
+    created_at timestamp with time zone not null default now(),
+    uid uuid not null,
+    title text not null,
+    description text null,
+    status boolean not null default false,
+    due_date timestamp with time zone null,
+    priority text not null,
+    category bigint not null,
+    tags json null,
+    constraint tasks_pkey primary key (id),
+    constraint tasks_category_fkey foreign key (category) references categories (id) on update cascade on delete cascade,
+    constraint tasks_uid_fkey foreign key (uid) references auth.users (id) on update cascade on delete cascade
+  ) tablespace pg_default;
+```
+
+### Categories Table
+```
+create table
+  public.categories (
+    id bigint generated by default as identity,
+    category_title text not null,
+    created_at timestamp with time zone not null default now(),
+    constraint categories_pkey primary key (id)
+  ) tablespace pg_default;
+```
+
+
+## Authors
+
+Made with ducks by [Shekhar Maharaj](https://www.github.com/ShekoG1)
+
+
+## FAQ
+
+#### Why ducks?
+
+My mom loves ducks, and I thought it would be a cool name and theme for a task manager!
+
+#### Why use Supabase?
+
+Rather than setting up a cloud DB on my own, or using some other form of storage, I'd rather use something simplistic for this task - specifically, something that lets me focus on other aspects of development. Supabase does a great job at managing the DB, thus letting me handle the rest.
+
+
+#### Why use NodeJS?
+
+I love NodeJS
+
+#### Why use ReactJS?
+
+I love ReactJS
+
+#### Got duck jokes?
+
+"Why do ducks make great detectives?"
+
+"Because they always quack the case!"

@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "546f8de4-3992-4347-9fce-096c2d88bf17",
+		"name": "Duck Tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25931723"
+	},
+	"item": [
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_email\":\"shekharmaharaj2905@gmail.com\",\r\n    \"user_password\":\"P@ssword1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/auth/signin"
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_name\":\"Shekhar\",\r\n    \"user_surname\":\"Maharaj\",\r\n    \"user_email\":\"shekharmaharaj@google.com\",\r\n    \"user_password\":\"P@ssword1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/auth/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllTasks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uid\":\"7c7259a9-2266-4394-86e4-704583418da9\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uid\":\"7c7259a9-2266-4394-86e4-704583418da9\",\r\n    \"task_title\":\"Test Task3\",\r\n    \"task_description\":\"Test Description\",\r\n    \"task_due_date\":null,\r\n    \"task_priority\":\"low\",\r\n    \"task_category\":1,\r\n    \"task_tags\":null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/tasks/create"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateTask",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskId\":\"4\",\r\n    \"task_status\":true\r\n    // OPTIONIAL ------------------------------------------------------\r\n    // \"task_title\":\"Ready to delete\",\r\n    // \"task_description\":\"This task is ready to be deleted.\"\r\n    // \"task_due_date\":null,\r\n    // \"task_priority\":\"low\",\r\n    // \"task_category\":1,\r\n    // \"task_tags\":null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTask",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskId\":\"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllCategories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/category"
+			},
+			"response": []
+		}
+	]
+}
