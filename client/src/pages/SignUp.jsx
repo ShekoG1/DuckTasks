@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './../style/SignUp.css';
+import {motion} from 'framer-motion';
 
 function SignUp() {
     const [name, setName] = useState("");
@@ -68,7 +69,7 @@ function SignUp() {
 
     return (
         <section id="login">
-            <div id="login_model">
+            <motion.div id="login_model" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"spring",stiffness: 100}}>
                 <h2>SIGN UP</h2>
                 <p>Join us, and complete your tasks with ease!</p>
                 <div id="login_model_form">
@@ -98,7 +99,7 @@ function SignUp() {
                     <button id="login_buttons--btn" onClick={(event) => signup(event)}>Sign Up</button>
                     <a href="/Login">Or Login</a>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }

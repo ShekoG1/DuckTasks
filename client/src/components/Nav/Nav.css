@@ -29,7 +29,6 @@ nav{
     background-color: #FFD257;
     cursor: pointer;
     padding: 5px 10px 5px 10px;
-    transition: all 500ms;
     border-radius: 10px;
 }
 .nav_profile button:hover{

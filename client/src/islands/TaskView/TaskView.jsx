@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './TaskView.css'
 import Task from '../../components/Task/Task';
+import {motion} from 'framer-motion';
 
 function TaskView(props) {
 
@@ -17,8 +18,10 @@ function TaskView(props) {
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append("Access-Control-Allow-Origin","*");
 
+            const uid = JSON.parse(localStorage.getItem("token")).user.id;
+
             const raw = JSON.stringify({
-                "uid": "7c7259a9-2266-4394-86e4-704583418da9" // This will be swopped out for a uid
+                "uid": uid // This will be swopped out for a uid
             });
 
             const requestOptions = {
@@ -104,12 +107,12 @@ function TaskView(props) {
 
     return (
         <div id="taskview">
-            <button id='taskview_create--btn' onClick={props.handleCreateTaskClick} data-type="create">Create Task</button>
-            <p>Click on the checkbox to mark a task as complete.</p>
+            <motion.button id='taskview_create--btn' onClick={props.handleCreateTaskClick} data-type="create" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"spring",stiffness: 100}}>Create Task</motion.button>
+            <motion.p initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"spring",stiffness: 100}}>Click on the checkbox to mark a task as complete.</motion.p>
             <div id="task_list">
                 {
                     tasks.length != 0?
-                    tasks.map((task) => (
+                    tasks.map((task,index) => (
                         <Task
                             key={task.id}
                             title={task.title}
@@ -120,14 +123,15 @@ function TaskView(props) {
                             id={task.id}
                             onChange={(event)=>handleTaskStatusChange(event.target.checked,task.id)}
                             deleteTask={(event)=>handleDeleteTaskClick(task.id)}
+                            delayTransition={Number("0."+index)}
                         />
                     )) :
                     <>
-                        <div className='notasks'>
+                        <motion.div className='notasks' initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"spring",stiffness: 100}}>
                             <h2>No tasks here!</h2>
                             <p>It appears that you don't have any tasks...yet {":)"}<br/> Try refreshing the page, or coming back later.</p>
                             <button onClick={()=>window.location.reload()}>Refresh</button>
-                        </div>
+                        </motion.div>
                     </>
                 }
             </div>

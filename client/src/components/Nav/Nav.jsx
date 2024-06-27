@@ -16,8 +16,8 @@ function Nav() {
                 <span className='nav_menu--btn'>Menu</span>
             </div>
             <div className="nav_profile">
-                <motion.button initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} onClick={signout}>Sign Out</motion.button>
-                <img src="/assets/profile.png" alt="Profile" className="nav_profile--img" />
+                <motion.button initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} onClick={signout} transition={{duration:0.1,type:"spring",stiffness: 100}}>Sign Out</motion.button>
+                <motion.img initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} onClick={signout} transition={{duration:0.1,type:"spring",stiffness: 100}} src="/assets/profile.png" alt="Profile" className="nav_profile--img" />
             </div>
         </nav>
     )

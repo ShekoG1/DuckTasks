@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './UpsertTask.css';
+import {motion} from "framer-motion";
 
 function UpsertTask(props) {
     if(props.handleGoBackClick === undefined) throw new Error("UpsertTask is missing a required prop: handleGoBackClick");
@@ -72,56 +73,29 @@ function UpsertTask(props) {
           })
           .catch((error) => console.error(error));
     }
-    // Backlog
-    /*const updateTask = async () => {
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        
-        const raw = JSON.stringify({
-          "taskId": props.taskId,
-          "task_status": true,
-
-        });
-        
-        const requestOptions = {
-          method: "PUT",
-          headers: myHeaders,
-          body: raw,
-          redirect: "follow"
-        };
-        
-        fetch(process.env.REACT_APP_API_URL+"/tasks", requestOptions)
-          .then((response) => response.text())
-          .then((result) => console.log(result))
-          .catch((error) => console.error(error));
-    }*/
     const handleSaveBtnClick = () => {
-        if(props.isUpdate) {
-            // updateTask()
-        } else {
-            createTask();
-        }
+        createTask();
     }
 
     return (
         <div id="upsert_task">
             <div id="tools">
-                <div onClick={props.handleGoBackClick}>{"<- "}Back</div>
-                <div>{props.isUpdate ? "Update ": "Create a"} Task</div>
+                <motion.div initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"spring",stiffness: 100}} onClick={props.handleGoBackClick}>{"<- "}Back</motion.div>
+                <motion.div initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"spring",stiffness: 100}}>{props.isUpdate ? "Update ": "Create a"} Task</motion.div>
             </div>
             <div id="form">
                 <div className="form_left">
-                    <div className="forminput">
+                    <motion.div className="forminput" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>
                         <label>Title</label>
                         <input className='textfield' type="text" onChange={(event)=>setTaskName(event.target.value)} />
-                    </div>
-                    <div className="forminput">
+                    </motion.div>
+                    <motion.div className="forminput" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>
                         <label>Description</label>
                         <textarea className='textarea' onChange={(event)=>setTaskDescription(event.target.value)}></textarea>
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="form_right">
-                    <div className="forminput">
+                    <motion.div className="forminput" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>
                         <label>Category</label>
                         <select className='category--select' onChange={(event)=>setTaskCategory(event.target.value)}>
                             {
@@ -136,19 +110,19 @@ function UpsertTask(props) {
                                 <option disabled>Loading...</option>
                             }
                         </select>
-                    </div>
-                    <div className="forminput">
+                    </motion.div>
+                    <motion.div className="forminput" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>
                         <label>Priority</label>
                         <select className='priotity--select' onChange={(event)=>setTaskPriority(event.target.value)}>
                             <option value="high">High</option>
                             <option value="medium">Medium</option>
                             <option value="low">Low</option>
                         </select>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             <div id="buttons">
-                <button id={"buttons--save"} onClick={handleSaveBtnClick}>Save</button>
+                <motion.button id={"buttons--save"} onClick={handleSaveBtnClick} initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"spring",stiffness: 100}}>Save</motion.button>
                 {/* <button id={"buttons--reset"}>Reset</button> */}
             </div>
         </div>

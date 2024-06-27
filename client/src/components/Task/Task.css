@@ -32,3 +32,21 @@
 .task_delete{
     cursor: pointer;
 }
+
+.task_delete:hover{
+    animation: ring 500ms ease-in-out infinite;
+}
+@keyframes ring {
+    0% {
+      stroke-dashoffset: 251; /* Start with the ring hidden */
+      transform: rotate(0deg); /* Start rotation from 0 degrees */
+    }
+    33% {
+      stroke-dashoffset: 0; /* Halfway through animation, show full ring */
+      transform: rotate(10deg); /* Rotate halfway */
+    }
+    66% {
+      stroke-dashoffset: 251; /* Reset to hide the ring at the end */
+      transform: rotate(-10deg); /* Complete rotation */
+    }
+  }

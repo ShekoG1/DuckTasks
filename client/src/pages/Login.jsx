@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './../style/Login.css';
+import {motion} from 'framer-motion';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ function Login() {
                     - Ideally we would use the access token from the result so that we do not expose any of the users data, but due to the time constraints of this test, I have decided to simply store the entire result JSON in order to move on to other processess
                 */
                 if(result.status === 200) {
-                    localStorage.setItem("token", result.token);
+                    localStorage.setItem("token", JSON.stringify(result.token));
                     window.location.href = "/";
                 }
                 else {
@@ -64,15 +65,15 @@ function Login() {
 
     return (
         <section id="login">
-            <div id="login_model">
-                <h2>LOGIN</h2>
-                <p>Welcome back, valued user!</p>
+            <motion.div id="login_model" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"spring",stiffness: 100}}>
+                <h2 initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>LOGIN</h2>
+                <p initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>Welcome back, valued user!</p>
                 <div id="login_model_form">
-                    <div className="forminput">
+                    <div className="forminput" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>
                         <label>Email</label>
                         <input type="email" onChange={(event) => setEmail(event.target.value)} />
                     </div>
-                    <div className="forminput">
+                    <div className="forminput" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>
                         <label>Password</label>
                         <div className="forminput--password">
                             <input type={showPassword ? "text" : "password"} onChange={(event) => setPassword(event.target.value)} />
@@ -82,11 +83,11 @@ function Login() {
                         </div>
                     </div>
                 </div>
-                <div id="login_buttons">
+                <div id="login_buttons" initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} transition={{duration:0.1,type:"slide",stiffness: 100}}>
                     <button id="login_buttons--btn" onClick={(event) => login(event)}>Login</button>
                     <a href="/SignUp">Or Sign Up</a>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }
