@@ -33,7 +33,7 @@ function Login() {
           redirect: "follow"
         };
         
-        fetch("http://localhost:5000/auth/signin", requestOptions)
+        fetch(process.env.REACT_APP_API_URL+"/auth/signin", requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 result = JSON.parse(result);

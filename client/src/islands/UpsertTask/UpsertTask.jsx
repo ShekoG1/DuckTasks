@@ -29,7 +29,7 @@ function UpsertTask(props) {
             };
 
             try {
-                const response = await fetch("http://localhost:5000/category", requestOptions);
+                const response = await fetch(process.env.REACT_APP_API_URL+"/category", requestOptions);
                 const result = await response.json();
                 console.log(result)
                 
@@ -65,7 +65,7 @@ function UpsertTask(props) {
           redirect: "follow"
         };
         
-        fetch("http://localhost:5000/tasks/create", requestOptions)
+        fetch(process.env.REACT_APP_API_URL+"/tasks/create", requestOptions)
           .then((response) => response.text())
           .then((result) => {
             // Show success alert
@@ -92,7 +92,7 @@ function UpsertTask(props) {
           redirect: "follow"
         };
         
-        fetch("http://localhost:5000/tasks", requestOptions)
+        fetch(process.env.REACT_APP_API_URL+"/tasks", requestOptions)
           .then((response) => response.text())
           .then((result) => console.log(result))
           .catch((error) => console.error(error));

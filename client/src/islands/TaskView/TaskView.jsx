@@ -29,7 +29,7 @@ function TaskView(props) {
             };
 
             try {
-                const response = await fetch("http://localhost:5000/tasks", requestOptions);
+                const response = await fetch(process.env.REACT_APP_API_URL+"/tasks", requestOptions);
                 const result = await response.json();
                 console.log(result)
                 
@@ -63,7 +63,7 @@ function TaskView(props) {
           redirect: "follow"
         };
         
-        fetch("http://localhost:5000/tasks", requestOptions)
+        fetch(process.env.REACT_APP_API_URL+"/tasks", requestOptions)
           .then((response) => response.text())
           .then((result) => {
             console.log('UPDATED',result)
