@@ -1,5 +1,6 @@
 import React from 'react';
 import './Nav.css';
+import {motion} from 'framer-motion';
 
 function Nav() {
 
@@ -15,7 +16,7 @@ function Nav() {
                 <span className='nav_menu--btn'>Menu</span>
             </div>
             <div className="nav_profile">
-                <button onClick={signout}>Sign Out</button>
+                <motion.button initial={{scale:0}} whileInView={{scale:1}} exit={{scale:0}} onClick={signout}>Sign Out</motion.button>
                 <img src="/assets/profile.png" alt="Profile" className="nav_profile--img" />
             </div>
         </nav>

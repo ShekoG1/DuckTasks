@@ -107,19 +107,29 @@ function TaskView(props) {
             <button id='taskview_create--btn' onClick={props.handleCreateTaskClick} data-type="create">Create Task</button>
             <p>Click on the checkbox to mark a task as complete.</p>
             <div id="task_list">
-                {tasks.map((task) => (
-                    <Task
-                        key={task.id}
-                        title={task.title}
-                        description={task.description}
-                        complete={task.status}
-                        priority={task.priority}
-                        category={task.categories.category_title}
-                        id={task.id}
-                        onChange={(event)=>handleTaskStatusChange(event.target.checked,task.id)}
-                        deleteTask={(event)=>handleDeleteTaskClick(task.id)}
-                    />
-                ))}
+                {
+                    tasks.length != 0?
+                    tasks.map((task) => (
+                        <Task
+                            key={task.id}
+                            title={task.title}
+                            description={task.description}
+                            complete={task.status}
+                            priority={task.priority}
+                            category={task.categories.category_title}
+                            id={task.id}
+                            onChange={(event)=>handleTaskStatusChange(event.target.checked,task.id)}
+                            deleteTask={(event)=>handleDeleteTaskClick(task.id)}
+                        />
+                    )) :
+                    <>
+                        <div className='notasks'>
+                            <h2>No tasks here!</h2>
+                            <p>It appears that you don't have any tasks...yet {":)"}<br/> Try refreshing the page, or coming back later.</p>
+                            <button onClick={()=>window.location.reload()}>Refresh</button>
+                        </div>
+                    </>
+                }
             </div>
         </div>
     );
