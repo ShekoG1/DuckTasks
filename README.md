@@ -166,10 +166,8 @@ create table
     title text not null,
     description text null,
     status boolean not null default false,
-    due_date timestamp with time zone null,
     priority text not null,
     category bigint not null,
-    tags json null,
     constraint tasks_pkey primary key (id),
     constraint tasks_category_fkey foreign key (category) references categories (id) on update cascade on delete cascade,
     constraint tasks_uid_fkey foreign key (uid) references auth.users (id) on update cascade on delete cascade

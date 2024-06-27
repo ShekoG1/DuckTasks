@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import UpsertTask from './../islands/UpsertTask/UpsertTask';
 import TaskView from '../islands/TaskView/TaskView';
+import Nav from '../components/Nav/Nav';
+import Footer from '../components/Footer/Footer';
 
 const Home = () => {
   const [createTask, setCreateTask] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
 
   //Ensure that the user is logged in before accessing other features
-  if(localStorage.getItem("token") === null){
+  if(localStorage.getItem("token") === null || localStorage.getItem("token") === "" || localStorage.getItem("token") === undefined){
     window.location.href = "/Login";
   }
 
@@ -25,15 +27,15 @@ const Home = () => {
   }
 
   return (
-    <div id="home">
-        {/* NAV GOES HERE */}
+    <section id="home">
+        <Nav />
         {
           createTask ?
           <UpsertTask handleGoBackClick={handleGoBackClick} handleUpsertTaskClick={handleUpsertTaskClick} isUpdate={isUpdate}/> :
           <TaskView handleCreateTaskClick={handleCreateTaskClick}/>
         }
-        {/* FOOTER GOES HERE */}
-    </div>
+        <Footer />
+    </section>
   )
 }
 
